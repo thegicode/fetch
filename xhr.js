@@ -16,20 +16,20 @@ function failureListener(err) {
 	console.log('Request failed', err);  
 }
 
-var request = new XMLHttpRequest();  
-request.onload = successListener;  
-request.onerror = failureListener; 
-request.timeout = 1000;
-request.ontimeout = function(e) {
+var xhr = new XMLHttpRequest();  
+xhr.onload = successListener;  
+xhr.onerror = failureListener; 
+xhr.timeout = 1000;
+xhr.ontimeout = function(e) {
 	console.log('요청한 시간이 초과되었습니다.')
 }
-request.onabort = function(){
+xhr.onabort = function(){
 	console.log('요청이 취소되었습니다.');
 }
-request.open('get', 'https://api.gthub.com/users/thegicode', true);  
-request.send();
+xhr.open('get', 'https://api.github.com/users/thegicode', true);  
+xhr.send();
 // setTimeout(() => {
-// 	request.abort()
+// 	xhr.abort()
 // }, 500);
 
 

@@ -1,5 +1,5 @@
 
-function successListener() {  
+function success() {  
 	var data = JSON.parse(this.responseText);  
 	switch(this.status){
 		case 200:
@@ -9,16 +9,19 @@ function successListener() {
 		case 404: 
 			console.log('유효하지 않은 API 요청입니다.')
 			break;
+		default:
+			console.log(this.status);
+			break;
 	}
 }
   
-function failureListener(err) {
+function failure(err) {
 	console.log('Request failed', err);  
 }
 
 var xhr = new XMLHttpRequest();  
-xhr.onload = successListener;  
-xhr.onerror = failureListener; 
+xhr.onload = success;  
+xhr.onerror = failure; 
 xhr.timeout = 1000;
 xhr.ontimeout = function(e) {
 	console.log('요청한 시간이 초과되었습니다.')
